@@ -1,5 +1,64 @@
-# Build output directies
-/target
-*/target
-/build
-*/build
+# ====================
+# Java class files
+# ====================
+*.class
+
+# ====================
+# Package files
+# ====================
+*.jar
+*.war
+*.ear
+
+# ====================
+# Build folders
+# ====================
+# Maven
+target/
+# Gradle
+build/
+
+# ====================
+# IDEs
+# ====================
+# IntelliJ IDEA
+/.idea/
+/*.iml
+/*.ipr
+/*.iws
+
+# Eclipse
+/.project
+/.classpath
+/.settings/
+
+# VS Code
+/.vscode/
+
+# ====================
+# Logs and temp files
+# ====================
+*.log
+*.tmp
+*.swp
+
+# Spring Boot restart folder
+restart/
+
+# ====================
+# OS generated files
+# ====================
+.DS_Store
+Thumbs.db
+
+# ====================
+# Environment files
+# ====================
+.env
+
+# ====================
+# Others you may want to add
+# ====================
+# See local credential or secret files:
+# src/main/resources/application-*.properties
+# src/main/resources/application-*.yml
