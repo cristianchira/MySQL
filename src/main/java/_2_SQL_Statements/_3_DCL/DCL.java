@@ -11,7 +11,9 @@ package _2_SQL_Statements._3_DCL;
 /*                                           Data Control Language (DCL)
 
 
-    ○ DCL is a syntax containing only 2 statements:
+    ○ GRANT și REVOKE nu sunt singurele propoziții de administrare de cont. Manualul 9.7, 15.7.1, mai numește ALTER USER, CREATE USER, DROP USER, RENAME USER, CREATE ROLE, DROP ROLE, SET PASSWORD, SET DEFAULT ROLE și SET ROLE. 15.3.3 spune că GRANT, REVOKE, ALTER USER, CREATE USER, DROP USER, RENAME USER și SET PASSWORD fac commit implicit, pentru că modifică tabele din schema mysql.
+    HISTORICAL: DCL is a syntax containing only 2 statements:
+    Regula citită în tur: MySQL 9.7 Reference Manual, 15.7.1 Account Management Statements și 15.3.3 Statements That Cause an Implicit Commit.
 
                    * GRANT
 

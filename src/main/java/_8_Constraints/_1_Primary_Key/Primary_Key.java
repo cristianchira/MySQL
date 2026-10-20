@@ -29,6 +29,7 @@ package _8_Constraints._1_Primary_Key;
                                             PRIMARY KEY (studentId, courseId)
                                             );
                   * can't use AUTO_INCREMENT with a composite primary key in MySQL.
+                    HISTORICAL: propoziția de deasupra nu este regula din manualul 9.7 deschis în tur. 17.6.1.6: pe InnoDB, coloana AUTO_INCREMENT trebuie să fie prima sau singura dintr-un index, nu neapărat PRIMARY KEY. 5.6.9: pe MyISAM, AUTO_INCREMENT poate fi a doua coloană din PRIMARY KEY (grp, id). Cheia compusă poate purta AUTO_INCREMENT. Ce cade pe InnoDB este coloana care nu este prima în niciun index.
 
     ○ Normally, errors occur for data-change statements (such as INSERT or UPDATE)
                   * that would violate

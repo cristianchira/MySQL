@@ -17,7 +17,8 @@ package _0_DB_ADMINISTRATION.MySQL_Commands;
                  * SHOW tables;
 
 
-                                 MYSQL  -- administrative command
+    SHOW DATABASES de mai jos este o propoziție pe care o execută serverul. Nu este o comandă pe care clientul mysql o consumă singur.
+                                 HISTORICAL: MYSQL  -- administrative command. Manualul 9.7: SHOW DATABASES listează directoarele din data directory pentru contul care are privilegiu; programul mysqlshow poate aduce aceeași listă. Comenzile interpretate de client sunt help, clear, delimiter și status, nu SHOW.
 
 
     ○ See all databases

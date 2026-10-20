@@ -19,6 +19,7 @@ package _8_Constraints.Not_Null;
                  * NULL
 
                                - is assigned by computer
+                                 HISTORICAL: propoziția de deasupra nu este regula. NULL este lipsa valorii, nu un 0 pus de server. Clientul poate scrie NULL explicit. Pe MySQL 9.7, sql_mode implicit include STRICT_TRANS_TABLES: o coloană NOT NULL fără DEFAULT, omisă la INSERT pe InnoDB, oprește propoziția. Nu primește un NULL inventat.
 
     ○ doesn't accept null data value
 

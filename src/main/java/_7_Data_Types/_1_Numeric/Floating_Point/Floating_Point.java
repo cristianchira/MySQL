@@ -12,15 +12,10 @@ package _7_Data_Types._1_Numeric.Floating_Point;
 /*                                       Floating-Point
 
 
-    ○ FLOAT(5,3)   -- 10.523
-
-                  * single precision    -- 23 digits
-
-
-
-    ○ DOUBLE(9,3)
-
-                 * double precision       --  53 digits
+    ○ FLOAT și DOUBLE păstrează o aproximare. Patru octeți pentru precizie simplă, opt pentru dublă. FLOAT(p) cu p de la 0 la 23 alege 4 octeți; p de la 24 la 53 alege 8 octeți. FLOAT(M,D) și DOUBLE(M,D) sunt deprecate.
+                  * HISTORICAL: FLOAT(5,3) -- 10.523, single precision -- 23 digits.
+                  * HISTORICAL: DOUBLE(9,3), double precision -- 53 digits.
+                  * Regula citită în tur, manualul 9.7, 13.1.4: 23 și 53 nu sunt cifre zecimale. Sunt limitele lui FLOAT(p) pentru mărimea stocării.
 
 
  */

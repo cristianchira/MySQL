@@ -10,17 +10,12 @@ package _2_SQL_Statements._4_TCL;
 /*                                     Transaction Control Language
 
 
-    ○ Not every change you make to a database is saved automatically
+    ○ Implicit, autocommit este 1: fiecare propoziție este ea însăși o tranzacție și rămâne la sfârșitul ei. COMMIT explicit închide tranzacția deschisă cu START TRANSACTION. Nu este limitat la INSERT, DELETE și UPDATE. DDL pe tabelă netemporară și GRANT fac commit implicit, iar un ROLLBACK ulterior nu le anulează.
+    HISTORICAL: Not every change you make to a database is saved automatically
+    HISTORICAL: It works only for changes made with the help of the INSERT, DELETE, or UPDATE clauses.
+    Regula citită în tur: MySQL 9.7 Reference Manual, 15.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements și 15.3.3 Statements That Cause an Implicit Commit.
 
     1. COMMIT.
-
-               * It works only for changes made with the help of the
-
-                              - INSERT,
-
-                              - DELETE,
-
-                              - or UPDATE clauses.
 
                * COMMIT will save
 
@@ -33,6 +28,8 @@ package _2_SQL_Statements._4_TCL;
                                SET last_name = 'Johnson'
                                WHERE customer_id =4
                                COMMIT;
+    HISTORICAL: exemplul de mai sus închide UPDATE cu COMMIT fără START TRANSACTION. Cu autocommit pornit, UPDATE este deja durabil la sfârșitul lui, iar COMMIT nu este momentul salvării.
+    Regula citită în tur: MySQL 9.7 Reference Manual, 15.3.1. By default, autocommit mode is enabled, and each statement is atomic.
 
 
     2. ROLLBACK clause
@@ -47,9 +44,9 @@ package _2_SQL_Statements._4_TCL;
 
                                - type ROLLBACK;
 
-                  * ROLLBACK will revert until  the last committed state,
-
-                              - and all the changes  made in the meantime will be REMOVED.
+                  * ROLLBACK anulează schimbările InnoDB încă necomise din tranzacția deschisă. Nu anulează CREATE TABLE netemporar, GRANT sau un UPDATE deja comis. Pe un motor netranzacțional, schimbarea rămâne și serverul avertizează că rollback-ul nu este complet.
+                  HISTORICAL: ROLLBACK will revert until the last committed state, and all the changes made in the meantime will be REMOVED.
+                  Regula citită în tur: MySQL 9.7 Reference Manual, 15.3.1 și 15.3.3. Avertismentul pentru motorul netranzacțional este ER_WARNING_NOT_COMPLETE_ROLLBACK.
 
                   * There can be multiple statements executed,
 

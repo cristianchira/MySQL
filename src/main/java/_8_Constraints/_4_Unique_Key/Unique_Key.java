@@ -35,10 +35,12 @@ package _8_Constraints._4_Unique_Key;
 
      1. ALTER TABLE departments_dup
         DROP INDEX [CONSTRAINT] dept_name;
+        HISTORICAL: rândul cu [CONSTRAINT] nu este sintaxa pe care serverul o execută. UNIQUE se scoate ca index: ALTER TABLE departments_dup DROP INDEX dept_name.
 
 
      2.ALTER TABLE departments_dup
        DROP INDEX [CONSTRAINT] UC;
+       HISTORICAL: [CONSTRAINT] nu face parte din DROP INDEX. Propoziția este ALTER TABLE departments_dup DROP INDEX UC.
 
 
 

@@ -6,17 +6,11 @@ package _2_SQL_Statements._4_TCL.COMMIT;
 /*                                                       COMMIT statement
 
 
-    ○ Not every change you make to a database is saved automatically
-
-    ○ The statement to use in such cases is COMMIT.
-
-               * It works only for changes made with the help of the
-
-                             - INSERT,
-
-                              - DELETE,
-
-                              - or UPDATE clauses.
+    ○ Implicit, autocommit este 1, deci propoziția este deja durabilă la sfârșitul ei dacă nu ai deschis START TRANSACTION. COMMIT închide tranzacția curentă și nu este limitat la INSERT, DELETE și UPDATE.
+    HISTORICAL: Not every change you make to a database is saved automatically
+    HISTORICAL: The statement to use in such cases is COMMIT.
+    HISTORICAL: It works only for changes made with the help of the INSERT, DELETE, or UPDATE clauses.
+    Regula citită în tur: MySQL 9.7 Reference Manual, 15.3.1. Același fișier spune mai jos, corect, că autocommit este pornit implicit.
 
                       COMMIT will save
 
