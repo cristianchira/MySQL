@@ -1,6 +1,6 @@
 package _0_DB_ADMINISTRATION.MySQL_Commands;
 
-/*                                MySql commands   - usefully from command line
+/*                          MySql commands   - usefully from command line
 
 
     ○ connect to MySql using command:

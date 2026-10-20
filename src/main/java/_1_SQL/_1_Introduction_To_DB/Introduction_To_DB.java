@@ -9,23 +9,23 @@ package _1_SQL._1_Introduction_To_DB;
 
     ○ Data value
 
-                *  A data value is the specific piece of information stored in a particular cell
+        *  A data value is the specific piece of information stored in a particular cell
 
-                            - at the intersection of a row and a column.
+                    - at the intersection of a row and a column.
 
-                * They are the actual content that is organized and managed by the
+        * They are the actual content that is organized and managed by the
 
-                            - database management system (DBMS).
+                    - database management system (DBMS).
 
-         Data values can be of various types, such as
+    Data values can be of various types, such as
 
-                 * numbers,
+         * numbers,
 
-                 * text,
+         * text,
 
-                 * dates,
+         * dates,
 
-                 * or even multimedia content like images and audio files.
+         * or even multimedia content like images and audio files.
 
     ○ A record
 
