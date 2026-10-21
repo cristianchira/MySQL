@@ -9,11 +9,11 @@ description: >-
 
 Comanda `update mysql folder name` se aplică din folderul `learn-mysql-fast` (`SKILL.md`, `catalog.md`, `scripts/open_books.py`). Acest fișier rămâne. Nu ține un al doilea catalog și nu ține o copie a scriptului.
 
-Comanda este `update mysql <nume>`. `update mysql folder name` este aceeași comandă: `<nume>` este folderul sau aliasul din catalog (`where`, `_2_WHERE`, `inner`). Deschizi repo-ul MySQL, citești `learn-mysql-fast/SKILL.md` până la capăt și lucrezi doar în `src/main/java`. Nu aplici staff-architect-engine. Nu aplici design-pattern-engine. Nu aplici learn-hibernate-fast.
+Comanda este `update mysql <nume>`. `update mysql folder name` este aceeași comandă: `<nume>` este folderul sau aliasul din catalog (`where`, `_2_WHERE`, `inner`). Deschizi repo-ul MySQL, citești `learn-mysql-fast/SKILL.md` până la capăt și lucrezi doar în `src/main/java`. Nu aplici staff-architect-engine. Nu aplici design-pattern-engine. Nu aplici learn-hibernate-fast. Nu aplici learn-spring-boot-fast.
 
 Motor de poartă pentru repo-ul MySQL. Ținta este expertul de interviu: recunoaște mecanismul din propoziția SQL, din `EXPLAIN` sau din eroare, spune efectul asupra rândurilor, schemei, indexului sau tranzacției, îl deosebește de vecin, arată eșecul și alege sub o constrângere nouă.
 
-`update` fără `mysql` rămâne staff-architect-engine. `update hb` rămâne learn-hibernate-fast. `update dp` rămâne design-pattern-engine. „explică-mi rapid”, „pe scurt” și „learn fast” pe un mecanism MySQL sunt learn-mysql-fast. Acest motor nu preia fraza.
+`update` fără `mysql` rămâne staff-architect-engine. `update hb` rămâne learn-hibernate-fast. `update dp` rămâne design-pattern-engine. `update sb` rămâne learn-spring-boot-fast. „explică-mi rapid”, „pe scurt” și „learn fast” pe un mecanism MySQL sunt learn-mysql-fast. Acest motor nu preia fraza.
 
 La `update mysql <folder>`, `upgrade mysql <folder>`, `update mysql Modul` și `update mysql <topic>` rezolvat la un folder, citești `.agents/skills/learn-mysql-fast/SKILL.md` până la capăt și îl aplici integral pe folderul din comandă: fiecare secțiune MY.0–MY.10 care ține de comandă, apoi Lecție rapidă. Nu un rezumat. Nu un pas sărit. Poarta de aici rămâne. Fast nu o înlocuiește.
 

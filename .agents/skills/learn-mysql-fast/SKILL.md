@@ -7,18 +7,18 @@ description: >-
   La update mysql, pom.xml primește ultimele versiuni stabile citite în tur: Java, MySQL LTS, Connector/J. Numerele nu se îngheață aici.
   update mysql se execută integral după acest fișier: fiecare secțiune care ține de comandă, fără rezumat și fără pas sărit.
   La sfârșit se verifică sincronizarea. Doar la 100% se afișează TASK TERMINAT 100%, și doar după ce fiecare fișier din comandă a trecut poarta, fără excepție.
-  Nu se activează pe "update" fără "mysql", nici pe "update hb", nici pe "update dp". Nu înlocuiește staff-architect-engine.
+  Nu se activează pe "update" fără "mysql", nici pe "update hb", nici pe "update dp", nici pe "update sb". Nu înlocuiește staff-architect-engine.
 ---
 
 # learn-mysql-fast
 
 Acest folder este skill-ul de MySQL. `SKILL.md` este poarta. `catalog.md` este harta de foldere. `scripts/open_books.py` deschide PDF-urile.
 
-Comanda este `update mysql <nume>`. `update mysql folder name` este aceeași comandă: `<nume>` este folderul sau aliasul din catalog (`where`, `_2_WHERE`, `inner`). Deschizi repo-ul MySQL, citești acest fișier până la capăt și lucrezi doar în `src/main/java`. Nu aplici staff-architect-engine. Nu aplici design-pattern-engine. Nu aplici learn-hibernate-fast.
+Comanda este `update mysql <nume>`. `update mysql folder name` este aceeași comandă: `<nume>` este folderul sau aliasul din catalog (`where`, `_2_WHERE`, `inner`). Deschizi repo-ul MySQL, citești acest fișier până la capăt și lucrezi doar în `src/main/java`. Nu aplici staff-architect-engine. Nu aplici design-pattern-engine. Nu aplici learn-hibernate-fast. Nu aplici learn-spring-boot-fast.
 
 Motor de poartă pentru repo-ul MySQL. Ținta este expertul de interviu: recunoaște mecanismul din propoziția SQL, din `EXPLAIN` sau din eroare, spune efectul asupra rândurilor, schemei, indexului sau tranzacției, îl deosebește de vecin, arată eșecul și alege sub o constrângere nouă.
 
-`update` fără `mysql` rămâne staff-architect-engine. `update hb` rămâne learn-hibernate-fast. `update dp` rămâne design-pattern-engine. „explică-mi rapid”, „pe scurt” și „learn fast” pe un mecanism MySQL sunt secțiunea Lecție rapidă de la sfârșitul acestui fișier.
+`update` fără `mysql` rămâne staff-architect-engine. `update hb` rămâne learn-hibernate-fast. `update dp` rămâne design-pattern-engine. `update sb` rămâne learn-spring-boot-fast. „explică-mi rapid”, „pe scurt” și „learn fast” pe un mecanism MySQL sunt secțiunea Lecție rapidă de la sfârșitul acestui fișier.
 
 La `update mysql <folder>`, `upgrade mysql <folder>`, `update mysql Modul` și `update mysql <topic>` rezolvat la un folder, aplici și secțiunea Lecție rapidă pe folderul din comandă. Poarta de mai sus rămâne.
 
