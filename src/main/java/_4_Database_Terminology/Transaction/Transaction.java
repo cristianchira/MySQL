@@ -248,5 +248,126 @@ package _4_Database_Terminology.Transaction;
 
  */
 
+/*
+TOPIC:
+    START TRANSACTION deschide tranzacția; până la COMMIT sau ROLLBACK, un UPDATE InnoDB încă nu este durabil.
+FAMILIE:
+    Transaction
+VERSION:
+    Java 27, MySQL 9.7 LTS, Connector/J 26.10.0. Propoziția nu a fost trimisă: în tur nu s-a deschis o sesiune, efectul pe server rămâne NERULAT AICI.
+INTENT:
+    Să ții mai multe schimbări împreună. Cu autocommit 1, o propoziție singură nu așteaptă START TRANSACTION.
+MECHANISM:
+    Serverul execută START TRANSACTION și oprește autocommit până la închidere. BEGIN într-o procedură este blocul BEGIN END, nu tranzacția; acolo folosești START TRANSACTION.
+LOOKALIKES:
+    COMMIT închide și face durabil. SET autocommit = 1 este modul, nu deschiderea unei tranzacții mai lungi.
+BOOK THEORY:
+    Manualul 9.7, 15.3.1, deschis în tur: START TRANSACTION pornește tranzacția. În programe stocate, BEGIN este blocul compus. autocommit este 1 implicit.
+BOOK EXAMPLE:
+    startTransactionHoldsTheChange
+REPO DEMO:
+    src/main/java/_4_Database_Terminology/Transaction/Transaction.java
+BREAK LAB:
+    commitClosesWhatStartOpened ține COMMIT. COMMIT închide. START TRANSACTION deschide. BEGIN în rutină este alt BEGIN.
+TRADE-OFFS:
+    Lași autocommit 1 când fiecare propoziție trebuie să rămână singură.
+ANTI-PATTERNS:
+    COMMIT ca să începi. Tranzacția se închide, nu se deschide.
+STAFF QUESTIONS:
+    startTransactionHoldsTheChange și commitClosesWhatStartOpened. Cele cinci întrebări de mai jos își execută demonstrația prin ele. Nu există bancă de 50 în acest copil: fast stă la părintele din catalog.
+NOVEL TRANSFER:
+    O recepție cu trei linii începe cu START TRANSACTION și se închide cu COMMIT. O linie singură poate rămâne pe autocommit.
+SPACED REVIEW:
+    O zi: 22 octombrie 2026, spui ce rămâne în tabelă la sfârșitul propoziției. Șapte zile: 28 octombrie 2026, îl desparți de vecin pe un rând concret. Treizeci de zile: 20 noiembrie 2026, alegi cealaltă unealtă când condiția din card se schimbă.
+
+1. Enunț: Ce problemă rezolvă START TRANSACTION?
+   Capcană: COMMIT deschide tranzacția.
+   Cheie: startTransactionHoldsTheChange: sesiunea ține deschisă o tranzacție până la COMMIT sau ROLLBACK. fără START TRANSACTION, autocommit 1 închide fiecare UPDATE singur
+   Demonstrație: startTransactionHoldsTheChange
+2. Enunț: Ce rămâne în tabelă sau în sesiune după START TRANSACTION?
+   Capcană: BEGIN dintr-o procedură este mereu START TRANSACTION.
+   Cheie: Efectul este: sesiunea ține deschisă o tranzacție până la COMMIT sau ROLLBACK. Se vede la sfârșitul propoziției, nu pentru că ai închis fereastra.
+   Demonstrație: startTransactionHoldsTheChange
+3. Enunț: De ce START TRANSACTION nu este vecinul său?
+   Capcană: autocommit 1 lasă UPDATE necomis până la COMMIT.
+   Cheie: COMMIT închide și face durabil. SET autocommit = 1 este modul, nu deschiderea unei tranzacții mai lungi.
+   Demonstrație: startTransactionHoldsTheChange
+4. Enunț: Cum eșuează COMMIT?
+   Capcană: START TRANSACTION șterge rânduri.
+   Cheie: commitClosesWhatStartOpened: COMMIT închide. START TRANSACTION deschide. BEGIN în rutină este alt BEGIN.
+   Demonstrație: commitClosesWhatStartOpened
+5. Enunț: Când nu mai trimiți START TRANSACTION?
+   Capcană: Ca să grupezi propoziții, este de ajuns autocommit 1.
+   Cheie: Lași autocommit 1 când fiecare propoziție trebuie să rămână singură.
+   Demonstrație: startTransactionHoldsTheChange
+
+BEST PRACTICES:
+    1. Cazul corect
+           -> DECIDE mai multe propoziții trebuie să rămână sau să cadă împreună -> startTransactionHoldsTheChange -> START TRANSACTION -> nu face durabilă schimbarea; asta este COMMIT
+    2. Eșecul cel mai mic
+           -> DECIDE trimiți textul care nu este propoziția -> commitClosesWhatStartOpened -> COMMIT -> COMMIT închide. START TRANSACTION deschide. BEGIN în rutină este alt BEGIN.
+    3. Granița
+           -> START TRANSACTION este propoziția. Un mod de tranzacție din JDBC poate trimite el propoziția; nu o înlocuiește cu un nume de metodă fără efect.
+    4. Alternativa
+           -> COMMIT închide și face durabil. SET autocommit = 1 este modul, nu deschiderea unei tranzacții mai lungi.
+    5. Anti-patternul
+           -> COMMIT ca să începi. Tranzacția se închide, nu se deschide.
+    6. Dovada
+           -> startTransactionHoldsTheChange ține propoziția. commitClosesWhatStartOpened ține eșecul. În tur serverul nu a executat-o: NERULAT AICI.
+    7. Interviu
+           -> START TRANSACTION deschide. COMMIT face durabil. ROLLBACK anulează. autocommit 1 face propoziția o tranzacție. BEGIN în procedură nu este START TRANSACTION.
+*/
+
 public class Transaction {
+    /*
+    🟢 Începător
+        Ce este            sesiunea ține deschisă o tranzacție până la COMMIT sau ROLLBACK
+        De ce e nevoie     fără START TRANSACTION, autocommit 1 închide fiecare UPDATE singur
+    🟡 Producție
+        Cum se scrie       START TRANSACTION
+    🔴 Staff
+        Unde               efectul se vede la sfârșitul propoziției. Vecinul este COMMIT, care închide și face durabil
+    Pași
+        1. Ține propoziția într-un șir gata de trimis.
+        2. Nu îl trimite în tur: sesiunea nu a fost deschisă.
+        3. Nu îl amesteca cu COMMIT, care închide și face durabil.
+    */
+    // Începător: startTransactionHoldsTheChange păstrează propoziția pentru sesiunea ține deschisă o tranzacție până la COMMIT sau ROLLBACK
+    // Producție: public static String startTransactionHoldsTheChange(). Dacă dispare, rămâne comentariul de curs, pe care serverul nu îl execută.
+    // Expert: Metoda nu deschide JDBC și nu apasă un click în Workbench. BEGIN într-o procedură nu deschide tranzacția. Deschizi cu START TRANSACTION.
+    public static String startTransactionHoldsTheChange() {
+        // Începător: sesiunea ține deschisă o tranzacție până la COMMIT sau ROLLBACK
+        // Producție: START TRANSACTION. Dacă linia dispare, propoziția nu mai este gata de trimis.
+        // Expert: BEGIN într-o procedură nu deschide tranzacția. Deschizi cu START TRANSACTION. Linia nu garantează un rând văzut de client, pentru că șirul nu a plecat.
+        return "START TRANSACTION";
+        // Începător: metoda a înapoiat propoziția, nu un rând scris de server.
+        // Producție: acolada închide startTransactionHoldsTheChange. Șirul a rămas în proces.
+        // Expert: Închiderea nu este COMMIT și nu este ROLLBACK. Efectul pe server rămâne NERULAT AICI.
+    }
+    /*
+    🟢 Începător
+        Ce este            închide tranzacția deschisă; nu o deschide
+        De ce e nevoie     fără textul greșit, COMMIT pare începutul
+    🟡 Producție
+        Cum se scrie       COMMIT
+    🔴 Staff
+        Unde               eșecul este înainte de un rând schimbat. Vecinul corect este propoziția care închide tranzacția deschisă; nu o deschide
+    Pași
+        1. Ține textul greșit într-un șir gata de trimis.
+        2. Nu îl trimite în tur: sesiunea nu a fost deschisă.
+        3. Nu îl amesteca cu COMMIT, care închide și face durabil.
+    */
+    // Începător: commitClosesWhatStartOpened păstrează textul greșit pentru închide tranzacția deschisă; nu o deschide
+    // Producție: public static String commitClosesWhatStartOpened(). Dacă dispare, rămâne comentariul de curs, pe care serverul nu îl execută.
+    // Expert: Metoda nu deschide JDBC și nu apasă un click în Workbench. COMMIT închide. START TRANSACTION deschide. BEGIN în rutină este alt BEGIN.
+    public static String commitClosesWhatStartOpened() {
+        // Începător: închide tranzacția deschisă; nu o deschide
+        // Producție: COMMIT. Dacă linia dispare, textul greșit nu mai este gata de trimis.
+        // Expert: COMMIT închide. START TRANSACTION deschide. BEGIN în rutină este alt BEGIN. Linia nu garantează un rând văzut de client, pentru că șirul nu a plecat.
+        return "COMMIT";
+        // Începător: metoda a înapoiat textul greșit, nu un rând scris de server.
+        // Producție: acolada închide commitClosesWhatStartOpened. Șirul a rămas în proces.
+        // Expert: Închiderea nu este COMMIT și nu este ROLLBACK. Efectul pe server rămâne NERULAT AICI.
+    }
+
 }

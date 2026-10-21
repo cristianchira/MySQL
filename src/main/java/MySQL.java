@@ -16,6 +16,8 @@ MySQL 8.0.32  Source Code Documentation
 MySQL 8.0 Reference Manual
     https://dev.mysql.com/doc/refman/8.0/en/
 
+HISTORICAL: linkul de mai sus deschide manualul 8.0. În pom, mysql.version este 9.7 LTS. Manualul deschis în tur este https://dev.mysql.com/doc/refman/9.7/en/select.html
+
 
 Overview of the MySQL Database Management System
     https://dev.mysql.com/doc/refman/8.0/en/what-is.html
